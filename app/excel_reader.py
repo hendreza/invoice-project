@@ -9,7 +9,15 @@ sheet = "invoice info"
 
 df = pd.read_excel(file_name, sheet_name=sheet)
 
+
 for index, row in df.iterrows():
-    if index == 0:
-        print(row["invoice_number"], "|", row["invoice_date"], "|", row["name"], "|", row["last_name"], "|", row["description"], "|",  row["total"])
+    raw_date = row["invoice_date"]
+    formatted_date = raw_date.strftime("%Y-%m-%d")
+
+
+    raw_total = row["total"]
+    formatted_total = float(raw_total)
+    final_total = f"{formatted_total:.2f}"
+
+    print(row["invoice_number"], "|", formatted_date, "|", row["name"], "|", row["last_name"], "|", row["description"], "|",  final_total)
 
